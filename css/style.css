@@ -7,7 +7,9 @@
     display: flex;
 }
 
-.container *{
+.container h1 , .container .cats ,
+.container .cat-name , .container .cat-counter,
+.container .cat-area {
     display: flex;
     justify-content: center;
 }
@@ -28,4 +30,8 @@
     height: 50vh;
     cursor: pointer;
     margin: 0  auto;
+}
+
+li{
+    cursor: pointer;
 }
