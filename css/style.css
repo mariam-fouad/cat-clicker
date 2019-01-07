@@ -1,0 +1,15 @@
+.container{
+    display: flex;
+    flex-flow: column;
+}
+
+.container *{
+    display: flex;
+    justify-content: center;
+}
+
+img{
+    width: 50vw;
+    cursor: pointer;
+    margin: auto;
+}
