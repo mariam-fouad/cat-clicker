@@ -4,8 +4,19 @@ const cats=["Elle","Lou","Lele","Ed","Row","Koje"];
 const showCat = index=>{
     document.querySelector('.cat-name').innerHTML=cats[index];
     document.querySelector('.cat-counter').innerHTML=0;
+
     document.querySelector('.cat-area').src=`assets/cat${index+1}.jpg`
+
+    document.querySelector('.cat-area').addEventListener('click',((counter)=>{
+        return ()=>{
+            counter++;
+            document.querySelector('.cat-counter').innerHTML=counter;
+        };
+        
+    })(0));
+
 }
+
 //loop over all the cats
 cats.forEach((cat , index)=>{
     const listElement = document.createElement("li");
