@@ -3,13 +3,29 @@
     flex-flow: column;
 }
 
+.container-row{
+    display: flex;
+}
+
 .container *{
     display: flex;
     justify-content: center;
 }
 
-.cat{
-    width: 50vw;
+.cats{
+    margin-top: 5%;
+}
+
+.list{
+    width: 10%;
+}
+
+.area{
+    width: 90%;
+}
+
+.cat-area{
+    height: 50vh;
     cursor: pointer;
-    margin: auto;
+    margin: 0  auto;
 }
