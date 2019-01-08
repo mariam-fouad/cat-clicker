@@ -1,12 +1,12 @@
 //cats names Modal
-const Modal={
+const modal={
     cats:[
-        { name:"Elle", counter:0},
-        {name:"Lou",counter:0},
-        {name:"Lele",counter:0},
-        {name:"Ed",counter:0},
-        {name:"Row",counter:0},
-        {name:"Koje",counter:0}
+        { name:"Elle", counter:0 , url:"assets/cat1.jpg"},
+        {name:"Lou",counter:0, url:"assets/cat2.jpg"},
+        {name:"Lele",counter:0, url:"assets/cat3.jpg"},
+        {name:"Ed",counter:0, url:"assets/cat4.jpg"},
+        {name:"Row",counter:0, url:"assets/cat5.jpg"},
+        {name:"Koje",counter:0, url:"assets/cat6.jpg"}
         ],
     currentCat:null,
     }
@@ -14,18 +14,18 @@ const Modal={
 
 const octopus = {
     init : ()=>{
-        view.viewList(Modal.cats.map(cat=>cat.name));
+        view.viewList(modal.cats.map(cat=>cat.name));
         octopus.addEventListenerToImage();
     },
 
     updateCatAll :(index)=>{
-        Modal.currentCat=index;
-        view.viewArea(Modal.cats[index].name,Modal.cats[index].counter,`assets/cat${index+1}.jpg`);
+        modal.currentCat=index;
+        view.viewArea(modal.cats[index].name,modal.cats[index].counter,modal.cats[index].url);
     },
 
     updateCatCounter: (index)=>{
-        Modal.cats[index].counter++;
-        view.counterUpdate(Modal.cats[index].counter);
+        modal.cats[index].counter++;
+        view.counterUpdate(modal.cats[index].counter);
     },
 
     addEventListenerToList:(element,index)=>{
@@ -34,7 +34,7 @@ const octopus = {
 
     addEventListenerToImage: ()=>{
         document.querySelector('.cat-area').addEventListener('click',()=>{
-            octopus.updateCatCounter(Modal.currentCat);
+            octopus.updateCatCounter(modal.currentCat);
         });
     }
 
