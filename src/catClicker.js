@@ -16,6 +16,7 @@ const octopus = {
     init : ()=>{
         view.viewList(modal.cats.map(cat=>cat.name));
         octopus.addEventListenerToImage();
+        octopus.addeventListenerToAdmin();
     },
 
     updateCatAll :(index)=>{
@@ -36,7 +37,16 @@ const octopus = {
         document.querySelector('.cat-area').addEventListener('click',()=>{
             octopus.updateCatCounter(modal.currentCat);
         });
+    },
+
+    addeventListenerToAdmin: ()=>{
+        document.querySelector('.admin-button').addEventListener('click',octopus.showAdmin);
+    },
+
+    showAdmin: ()=>{
+        document.querySelector('.admin').style.display="block";
     }
+
 
 }
 
