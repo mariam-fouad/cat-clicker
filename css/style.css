@@ -36,3 +36,16 @@ li{
     cursor: pointer;
     margin-top: 2%;
 }
+
+button{
+    width: 50%;
+}
+
+.admin *{
+    margin-top: 3px;
+}
+
+.admin-section {
+    margin: auto;
+    margin-top: 3%;
+}
