@@ -41,10 +41,35 @@ const octopus = {
 
     addeventListenerToAdmin: ()=>{
         document.querySelector('.admin-button').addEventListener('click',octopus.showAdmin);
+        document.querySelector('.admin-cancel').addEventListener('click',octopus.hideAdmin);
+        document.querySelector('.admin-save').addEventListener('click',octopus.saveAdmin);
     },
 
     showAdmin: ()=>{
-        document.querySelector('.admin').style.display="block";
+        if(modal.currentCat!=null){
+            document.querySelector('.admin').style.display="block";
+            view.admin(modal.cats[modal.currentCat].name,modal.cats[modal.currentCat].counter,modal.cats[modal.currentCat].url);
+        }
+        else{
+            alert("Please pick a cat first");
+        }
+    },
+
+    hideAdmin: ()=>{
+        if(modal.currentCat!=null){
+            document.querySelector('.admin').style.display="none";
+        }
+    },
+    
+    saveAdmin: ()=>{
+        if(modal.currentCat!=null){
+            modal.cats[modal.currentCat].name=document.querySelector('.admin-cat-name').value;
+            modal.cats[modal.currentCat].url=document.querySelector('.admin-cat-url').value;
+            modal.cats[modal.currentCat].counter=document.querySelector('.admin-cat-counter').value;
+
+            octopus.hideAdmin();
+            octopus.updateCatAll(modal.currentCat);
+        }
     }
 
 
@@ -72,6 +97,12 @@ const view = {
 
     counterUpdate: (counter)=>{
         document.querySelector('.cat-counter').innerHTML=counter;
+    },
+
+    admin: (catName , counter , image)=>{
+        document.querySelector('.admin-cat-name').value=catName;
+        document.querySelector('.admin-cat-url').value=image;
+        document.querySelector('.admin-cat-counter').value=counter;
     }
 }
 
