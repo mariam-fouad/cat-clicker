@@ -1,31 +1,68 @@
-//cats names
-const cats=["Elle","Lou","Lele","Ed","Row","Koje"];
+//cats names Modal
+const Modal={
+    cats:[
+        { name:"Elle", counter:0},
+        {name:"Lou",counter:0},
+        {name:"Lele",counter:0},
+        {name:"Ed",counter:0},
+        {name:"Row",counter:0},
+        {name:"Koje",counter:0}
+        ],
+    currentCat:null,
+    }
 
-const showCat = index=>{
-    document.querySelector('.cat-name').innerHTML=cats[index];
-    document.querySelector('.cat-counter').innerHTML=0;
 
-    document.querySelector('.cat-area').src=`assets/cat${index+1}.jpg`
+const octopus = {
+    init : ()=>{
+        view.viewList(Modal.cats.map(cat=>cat.name));
+        octopus.addEventListenerToImage();
+    },
 
-    document.querySelector('.cat-area').addEventListener('click',((counter)=>{
-        return ()=>{
-            counter++;
-            document.querySelector('.cat-counter').innerHTML=counter;
-        };
-        
-    })(0));
+    updateCatAll :(index)=>{
+        Modal.currentCat=index;
+        view.viewArea(Modal.cats[index].name,Modal.cats[index].counter,`assets/cat${index+1}.jpg`);
+    },
+
+    updateCatCounter: (index)=>{
+        Modal.cats[index].counter++;
+        view.counterUpdate(Modal.cats[index].counter);
+    },
+
+    addEventListenerToList:(element,index)=>{
+        element.addEventListener('click',()=>octopus.updateCatAll(index));
+    } ,
+
+    addEventListenerToImage: ()=>{
+        document.querySelector('.cat-area').addEventListener('click',()=>{
+            octopus.updateCatCounter(Modal.currentCat);
+        });
+    }
 
 }
 
-//loop over all the cats
-cats.forEach((cat , index)=>{
-    const listElement = document.createElement("li");
-    const name = document.createTextNode(cat);
 
-    listElement.appendChild(name);
+const view = {
+    viewList : (catsNames)=>{
+        catsNames.forEach((cat , index)=>{
+            const listElement = document.createElement("li");
+            const name = document.createTextNode(cat);
+            listElement.appendChild(name);
 
-    listElement.addEventListener('click',()=>{
-        showCat(index);
-    });
-    document.querySelector('ul').appendChild(listElement);
-});
+            octopus.addEventListenerToList(listElement,index);
+
+            document.querySelector('ul').appendChild(listElement);
+        })
+    },
+
+    viewArea: (catName , counter , image)=>{
+        document.querySelector('.cat-name').innerHTML=catName;
+        document.querySelector('.cat-counter').innerHTML=counter;
+        document.querySelector('.cat-area').src=image;
+    },
+
+    counterUpdate: (counter)=>{
+        document.querySelector('.cat-counter').innerHTML=counter;
+    }
+}
+
+octopus.init();
